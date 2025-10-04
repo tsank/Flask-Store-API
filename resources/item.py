@@ -25,7 +25,7 @@ class Item(MethodView):
         try:
             db.session.delete(item)
             db.session.commit()
-            return {"message": "Item deleted"}, 204
+            return {"message": "Item deleted"}, 200
         except SQLAlchemyError as e:
             db.session.rollback()
             abort(500, message=f"Datbase error: {str(e)}")

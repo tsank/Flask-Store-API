@@ -13,8 +13,12 @@ class TagInStore(MethodView):
     @blp.response(200, TagSchema(many=True))
     def get(self, store_id):
         store = StoreModel.query.get_or_404(store_id)
+        tags = set()
+        for item in store.items.all():
+            for tag in item.tags:
+                tags.add(tag)
 
-        return store.tags.all()
+        return list(tags)
     
     @blp.arguments(TagSchema)
     @blp.response(201, TagSchema)
@@ -34,6 +38,7 @@ class TagInStore(MethodView):
         
 @blp.route("/item/<string:item_id>/tag/<string:tag_id>")
 class LinkTagsToItem(MethodView):
+    @blp.response(200, TagSchema)
     def post(self, item_id, tag_id):
         item = ItemModel.query.get_or_404(item_id)
         tag = TagModel.query.get_or_404(tag_id)

@@ -11,4 +11,5 @@ class ItemModel(db.Model):
         db.Integer, db.ForeignKey("stores.id"), unique=False, nullable=False
         )    # Foreign key to stores table, this will prevent creating an item without a connecting foreign key
     store = db.relationship("StoreModel", back_populates="items")
+    tags = db.relationship("TagModel", back_populates="items", secondary="items_tags")
 

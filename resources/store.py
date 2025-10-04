@@ -26,8 +26,6 @@ class Store(MethodView):
     def get(self, store_id):
         store = StoreModel.query.get_or_404(store_id)
         return store
-        # print("From app.get_store() EP/API", flush=True)
-        # print(stores[store_id], flush=True)
 
     def delete(self, store_id):
         store = StoreModel.query.get_or_404(store_id)
