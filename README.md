@@ -47,4 +47,3 @@ Use tools like Insomnia or Postman to interact with the API endpoints. See endpo
 - `Dockerfile` & `docker-compose.yml` : Container setup
 
 ## License
-MIT
